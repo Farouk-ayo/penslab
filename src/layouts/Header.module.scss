@@ -1,0 +1,50 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  padding: 2rem 4rem;
+  justify-content: space-between;
+  align-items: center;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    gap: 2rem;
+    li {
+      a {
+        text-decoration: none;
+        color: #000;
+        font-size: 1rem;
+        font-weight: 600;
+        padding-bottom: 0.5rem;
+        border-bottom: none;
+        transition: all 0.5s;
+        &:hover {
+          border-bottom: #000 solid 1.5px;
+        }
+      }
+    }
+  }
+}
+
+.phone {
+  background-color: #c5a48e;
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  button {
+    font-size: 1rem;
+    background-color: red;
+    padding: 1rem 2rem;
+    color: white;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
