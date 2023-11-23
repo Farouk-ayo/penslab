@@ -19,7 +19,7 @@ const SwiperShow = () => {
       modules={[Navigation, Pagination, Scrollbar, EffectFade, Autoplay]}
       slidesPerView={1}
       effect="fade"
-      fadeEffect={{ crossFade: true, speed: 1000 }} // Set the speed of the fade effect (in milliseconds)
+      fadeEffect={{ crossFade: true, speed: 9000 }}
       autoplay={{ delay: 9000 }}
       scrollbar={{ draggable: true }}
       pagination={{

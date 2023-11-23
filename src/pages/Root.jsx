@@ -44,7 +44,7 @@ function Root() {
         className="arrowUp"
         size={40}
         color="white"
-      />{" "}
+      />
       <div className="flair"></div>
       <Header />
       <Outlet />
