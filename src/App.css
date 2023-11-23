@@ -25,3 +25,41 @@
 .arrowUp:hover {
   background-color: #52b238;
 }
+.swiper-scrollbar {
+  display: none !important;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ff4a1d !important;
+}
+
+.swiper-pagination {
+  text-align: left !important;
+  padding-left: 7rem;
+  padding-bottom: 4rem;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  background-repeat: no-repeat !important;
+  background-size: 100% auto !important;
+  background-position: center !important;
+  transform: scale(1);
+  color: black !important;
+  background-color: white;
+  font-size: 1rem;
+  width: 10rem;
+}
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: unset !important;
+  /* display: none; */
+}
+
+/* .swiper-button-prev {
+  background-image: url(./assets/arrowRight.svg) !important;
+}
+
+.swiper-button-next {
+  background-image: url(./assets/arrowLeft.svg) !important;
+} */

@@ -39,13 +39,13 @@ function Root() {
 
   return (
     <>
-      <div className="flair"></div>
       <GoArrowUp
         onClick={scrollToTop()}
         className="arrowUp"
         size={40}
         color="white"
-      />
+      />{" "}
+      <div className="flair"></div>
       <Header />
       <Outlet />
       <Footer />
