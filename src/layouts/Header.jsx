@@ -6,7 +6,7 @@ import { CiSearch } from "react-icons/ci";
 
 const Header = () => {
   return (
-    <section className={classes.header}>
+    <header className={classes.header}>
       <img className="logo" src={penslab} alt="" />
       <ul>
         <li>
@@ -31,7 +31,7 @@ const Header = () => {
         <CiSearch size={30} color="black" />
         <button>Get In Touch</button>
       </div>
-    </section>
+    </header>
   );
 };
 export default Header;

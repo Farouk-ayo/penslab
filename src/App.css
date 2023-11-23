@@ -1,0 +1,27 @@
+.flair {
+  width: 7px;
+  height: 7px;
+  background-color: black;
+  position: fixed;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.arrowUp {
+  padding: 0.5rem;
+  background-color: #4f4f4f;
+  position: fixed;
+  bottom: 3rem;
+  right: 3rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.5s;
+  z-index: 10;
+  /* display: none; */
+}
+
+.arrowUp:hover {
+  background-color: #52b238;
+}
