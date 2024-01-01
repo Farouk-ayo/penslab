@@ -1,47 +1,41 @@
 import SwiperShow from "../components/SwiperShow";
 import classes from "./Home.module.scss";
+import { services, whatWeDos } from "./data";
 
 const Home = () => {
   return (
     <>
       <SwiperShow />
       <section className={classes.service}>
-        <div>
-          <img
-            src="https://geya.axiomthemes.com/wp-content/uploads/2021/09/icon-1.svg
-"
-            alt=""
-          />
-          <h2>Energy Solutions</h2>
-          <p>
-            Solar energy is a great alternative for anyone who values
-            independence.
-          </p>
-        </div>
-        <div>
-          <img
-            src="https://geya.axiomthemes.com/wp-content/uploads/2021/09/icon-2.svg
-"
-            alt=""
-          />
-          <h2>Global Expertise</h2>
-          <p>
-            Customized design of photovoltaic systems to offset electrical bill.
-          </p>
-        </div>
-        <div>
-          <img
-            src="https://geya.axiomthemes.com/wp-content/uploads/2021/09/icon-3.svg"
-            alt=""
-          />
-          <h2>Commercial Use</h2>
-          <p>
-            Solar power is affordable, accessible and prevalent as never before.
-          </p>
-        </div>
+        {services.map((service) => (
+          <>
+            <div>
+              <img src={service.img} alt="" />
+              <h2>{service.title}</h2>
+              <p>{service.description}</p>
+            </div>
+          </>
+        ))}
       </section>
       <hr />
-      <section></section>
+      <section className={classes.whatWeOffer}>
+        <p>what we offer</p>
+        <h2>Leading Solar Panels in the Industry</h2>
+        <div className={classes.offers}>
+          {whatWeDos.map((offer) => (
+            <>
+              <div>
+                <p>{offer.number}</p>
+                <img src={offer.img} alt="" />
+                <h6>{offer.title}</h6>
+              </div>
+            </>
+          ))}
+        </div>
+        <div>
+          <button>About Us</button>
+        </div>
+      </section>
     </>
   );
 };

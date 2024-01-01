@@ -1,5 +1,4 @@
 import classes from "./Header.module.scss";
-import penslab from "../assets/penslab.png";
 import { LuPhoneCall } from "react-icons/lu";
 import { AiOutlineShopping } from "react-icons/ai";
 import { CiSearch } from "react-icons/ci";
@@ -7,7 +6,9 @@ import { CiSearch } from "react-icons/ci";
 const Header = () => {
   return (
     <header className={classes.header}>
-      <img className="logo" src={penslab} alt="" />
+      <h1>
+        PENS<span>lab</span>
+      </h1>{" "}
       <ul>
         <li>
           <a href="">Home</a>
