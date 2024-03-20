@@ -5,6 +5,7 @@ import Sidebar from "../components/Sidebar";
 import { LuPhoneCall } from "react-icons/lu";
 import { AiOutlineShopping } from "react-icons/ai";
 import { CiSearch } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   // State to manage whether the sidebar is open or not
@@ -27,19 +28,17 @@ const Header = () => {
       </h1>{" "}
       <ul className={classes.link}>
         <li>
-          <a href="">Home</a>
+          <Link to="/">Home</Link>
+        </li>
+
+        <li>
+          <Link to="/projects">Projects</Link>
         </li>
         <li>
-          <a href="">Pages</a>
+          <Link to="/blog">Blog</Link>
         </li>
         <li>
-          <a href="">Projects</a>
-        </li>
-        <li>
-          <a href="">Blog</a>
-        </li>
-        <li>
-          <a href="">Contact Us</a>
+          <Link to="/about-us">About Us</Link>
         </li>
       </ul>
       <div className={classes.contact}>

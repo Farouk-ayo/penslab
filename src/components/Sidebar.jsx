@@ -1,6 +1,7 @@
 import { useState } from "react";
 import classes from "./Sidebar.module.scss";
 import { RxCross2 } from "react-icons/rx";
+import { Link } from "react-router-dom";
 
 const Sidebar = (closeSidebar) => {
   // State to manage whether the sidebar is open or not
@@ -24,19 +25,16 @@ const Sidebar = (closeSidebar) => {
 
         <ul className={classes.links}>
           <li>
-            <a href="">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="">Pages</a>
+            <Link to="/projects">Projects</Link>
           </li>
           <li>
-            <a href="">Projects</a>
+            <Link to="/blog">Blog</Link>
           </li>
           <li>
-            <a href="">Blog</a>
-          </li>
-          <li>
-            <a href="">Contact Us</a>
+            <Link to="/about-us">About Us</Link>
           </li>
         </ul>
         <div className={classes.contact}>
