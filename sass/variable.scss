@@ -1,0 +1,9 @@
+$breakpoint-small: 576px;
+$breakpoint-medium: 768px;
+$breakpoint-large: 992px;
+
+@mixin respond-to($breakpoint) {
+  @media screen and (max-width: $breakpoint) {
+    @content;
+  }
+}

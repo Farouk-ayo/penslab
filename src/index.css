@@ -11,6 +11,10 @@
   font-family: "Kumbh Sans", sans-serif;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
+}
+body {
+  overflow-x: hidden;
 }
 .logo {
   object-fit: cover;
