@@ -89,7 +89,7 @@ const Footer = () => {
       <hr />
       <section>
         <div>
-          <p>PENSlab © 2023. All Rights Reserved.</p>
+          <p>PENSlab © 2024. All Rights Reserved.</p>
         </div>
       </section>
     </footer>
