@@ -6,6 +6,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+body {
+  box-sizing: border-box;
+}
 * {
   margin: 0;
   font-family: "Kumbh Sans", sans-serif;
@@ -13,9 +16,7 @@
   box-sizing: border-box;
   overflow-x: hidden;
 }
-body {
-  overflow-x: hidden;
-}
+
 .logo {
   object-fit: cover;
 }
