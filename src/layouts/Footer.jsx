@@ -80,7 +80,7 @@ const Footer = () => {
             <div>
               <h2>Say Hello</h2>
               <ul>
-                <li>faroukdev@gmail.com</li>
+                <li>mustaphafarouk41@gmail.com</li>
               </ul>
             </div>
           </div>

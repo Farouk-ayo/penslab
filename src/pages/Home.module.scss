@@ -1,15 +1,28 @@
+@import "../sass/variable";
+
 .service {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   padding: 7rem;
   width: 100%;
   gap: 2rem;
+  @include respond-to($breakpoint-medium) {
+    padding: 2rem 0rem;
+  }
   div {
     display: flex;
     flex-direction: column;
     gap: 1rem;
     justify-content: center;
     align-items: center;
+    width: calc(100% / 3.2);
+
+    @include respond-to($breakpoint-small) {
+      width: calc(100%);
+    }
 
     img {
       object-fit: cover;
@@ -35,10 +48,12 @@ hr {
 .whatWeOffer {
   padding: 4rem;
   width: 100%;
-  gap: 2rem;
+  gap: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex-wrap: wrap;
+
   div {
     display: flex;
     justify-content: center;
@@ -50,6 +65,7 @@ hr {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    width: 100%;
     div {
       display: flex;
       flex-direction: column;
@@ -60,6 +76,12 @@ hr {
       position: relative;
       filter: brightness(90%);
       transition: all 1s;
+      @include respond-to($breakpoint-medium) {
+        width: calc(100% / 2.1);
+      }
+      @include respond-to($breakpoint-small) {
+        width: 100%;
+      }
       &:hover {
         filter: brightness(100%);
         h6 {
