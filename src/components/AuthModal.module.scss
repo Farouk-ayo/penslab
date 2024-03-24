@@ -28,3 +28,28 @@ button {
     background-color: #f95024;
   }
 }
+
+.penslab {
+  text-align: center;
+  color: #f95024;
+  span {
+    color: black;
+  }
+}
+
+.pens {
+  font-size: 1.4rem;
+  text-align: center;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
+.formData {
+  margin: 1rem 0rem;
+  h2 {
+    margin-bottom: 2rem;
+  }
+  button {
+    width: 100%;
+  }
+}

@@ -9,13 +9,14 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 500,
   bgcolor: "background.paper",
   boxShadow: 24,
+  borderRadius: "10px",
   p: 4,
 };
 
-export default function AuthModal({isSignin}) {
+export default function AuthModal({ isSignin }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -78,13 +79,18 @@ export default function AuthModal({isSignin}) {
       >
         <Box sx={style}>
           <div className="">
-            <p className="">{renderContent("Sign In", "Create Account")}</p>
+            <h1 className={classes.penslab}>
+              PENS<span>lab</span>
+            </h1>
+            <p className={classes.pens}>
+              {renderContent("Welcome Back", "Create an Account")}
+            </p>
           </div>
-          <div className="">
+          <div className={classes.formData}>
             <h2 className="">
               {renderContent(
                 "Log  Into Your Account",
-                " Create Your OpenTable Account"
+                " Create Your Penslab Account"
               )}
             </h2>
             <AuthModalInputs
@@ -93,7 +99,7 @@ export default function AuthModal({isSignin}) {
               isSignin={isSignin}
             />
             <button className="" disabled={disabled}>
-              {renderContent("Sign In", "Create Account")}
+              {renderContent("Log In", "Create Account")}
             </button>
           </div>
         </Box>

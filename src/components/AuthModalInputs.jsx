@@ -1,6 +1,30 @@
+import { useState } from "react";
+import classes from "./AuthModalInputs.module.scss";
+import PasswordToggle from "./PasswordToggle/PasswordToggle";
+
 const AuthModalInputs = ({ inputs, handleChangeInput, isSignin }) => {
+  const [formData, setFormData] = useState({
+    password: "",
+    confirm_password: "",
+  });
+
+  const [isPasswordVisible, setIsPasswordVisible] = useState({
+    password: false,
+    password_confirmation: false,
+  });
+  const handlePasswordToggle = (field) => {
+    setIsPasswordVisible((prevState) => ({
+      ...prevState,
+      [field]: !prevState[field],
+    }));
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
   return (
-    <div>
+    <div className={classes.inputs}>
       {isSignin ? null : (
         <div className="my-3 justify-between text-sm">
           <input
@@ -9,7 +33,7 @@ const AuthModalInputs = ({ inputs, handleChangeInput, isSignin }) => {
             placeholder="First Name"
             name="firstName"
             value={inputs.firstName}
-            onChange={handleChangeInput}
+            onChange={handleChange}
           />
           <input
             type="text"
@@ -17,7 +41,7 @@ const AuthModalInputs = ({ inputs, handleChangeInput, isSignin }) => {
             placeholder="Last Name"
             value={inputs.lastName}
             name="lastName"
-            onChange={handleChangeInput}
+            onChange={handleChange}
           />
         </div>
       )}
@@ -29,38 +53,33 @@ const AuthModalInputs = ({ inputs, handleChangeInput, isSignin }) => {
           placeholder="Email"
           value={inputs.email}
           name="email"
-          onChange={handleChangeInput}
+          onChange={handleChange}
         />
       </div>
-      {isSignin ? null : (
-        <div className="my-3 justify-between text-sm">
-          <input
-            type="text"
-            className="input border rounded p-2 py-3 w-[49%]"
-            placeholder="Phone"
-            value={inputs.phone}
-            name="phone"
-            onChange={handleChangeInput}
-          />
-          <input
-            type="text"
-            className="input border rounded p-2 py-3 w-[49%]"
-            placeholder="City"
-            value={inputs.city}
-            name="city"
-            onChange={handleChangeInput}
-          />
+      <div className="">
+        <div className=" ">
+          {["password", "confirm_password"].map((field) => (
+            <div key={field} className="mb-4">
+              <div className={classes.passwordInputs}>
+                <input
+                  type={isPasswordVisible[field] ? "text" : "password"}
+                  id={field}
+                  name={field}
+                  placeholder={
+                    field === "password"
+                      ? "Enter your password"
+                      : "Confirm your password"
+                  }
+                  value={formData[field]}
+                  onChange={handleChange}
+                  required
+                  className=""
+                />
+                <PasswordToggle onToggle={() => handlePasswordToggle(field)} />
+              </div>
+            </div>
+          ))}
         </div>
-      )}
-      <div className="my-3 justify-between text-sm">
-        <input
-          type="password"
-          className="input border rounded p-2 py-3 w-full"
-          placeholder="Password"
-          value={inputs.password}
-          name="password"
-          onChange={handleChangeInput}
-        />
       </div>
     </div>
   );
