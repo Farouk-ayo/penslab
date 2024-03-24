@@ -66,16 +66,4 @@
   @include respond-to($breakpoint-small) {
     display: none;
   }
-  button {
-    font-size: 1rem;
-    background-color: #ff4a1d;
-    padding: 1rem 2.5rem;
-    color: white;
-    border: none;
-    font-weight: 600;
-    cursor: pointer;
-    &:hover {
-      background-color: #f95024;
-    }
-  }
 }

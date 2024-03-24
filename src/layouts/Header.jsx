@@ -1,11 +1,10 @@
-import { useState } from "react";
 import classes from "./Header.module.scss";
 import { TiThMenu } from "react-icons/ti";
 import Sidebar from "../components/Sidebar";
-import { LuPhoneCall } from "react-icons/lu";
-import { AiOutlineShopping } from "react-icons/ai";
-import { CiSearch } from "react-icons/ci";
+
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import AuthModal from "../components/AuthModal";
 
 const Header = () => {
   // State to manage whether the sidebar is open or not
@@ -42,10 +41,8 @@ const Header = () => {
         </li>
       </ul>
       <div className={classes.contact}>
-        <LuPhoneCall color="white" className={classes.phone} size={35} />
-        <AiOutlineShopping size={30} color="black" />
-        <CiSearch size={30} color="black" />
-        <button>Get In Touch</button>
+        <AuthModal isSignin={true} />
+        <AuthModal isSignin={false} />
       </div>
       <TiThMenu
         size={25}

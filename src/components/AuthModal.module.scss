@@ -1,0 +1,30 @@
+button {
+  border-radius: 2rem;
+  transition: all 0.5s;
+}
+
+.contact_one {
+  font-size: 1rem;
+  background-color: transparent;
+  border: 1px solid #ff4a1d;
+  padding: 1rem 2.5rem;
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+  &:hover {
+    background-color: #f95024;
+  }
+}
+
+.contact_two {
+  font-size: 1rem;
+  background-color: #ff4a1d;
+  padding: 1rem 2.5rem;
+  color: white;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  &:hover {
+    background-color: #f95024;
+  }
+}
