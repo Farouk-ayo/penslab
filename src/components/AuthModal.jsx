@@ -18,6 +18,8 @@ const style = {
   p: 4,
 };
 
+const mediaQuery = "@media (max-width: 600px)";
+
 export default function AuthModal({ isSignin }) {
   const { signIn, signUp } = useAuth();
   const [open, setOpen] = useState(false);
@@ -90,6 +92,14 @@ export default function AuthModal({ isSignin }) {
     setDisabled(true);
   }, [inputs]);
 
+  // Dynamically adjust width based on screen size
+  const dynamicStyle = {
+    ...style,
+    [mediaQuery]: {
+      width: 400,
+    },
+  };
+
   return (
     <div>
       <button
@@ -108,7 +118,7 @@ export default function AuthModal({ isSignin }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={dynamicStyle}>
           <form action="" onSubmit={handleClick}>
             <div className="">
               <h1 className={classes.penslab}>
