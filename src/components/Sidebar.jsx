@@ -2,6 +2,7 @@ import { useState } from "react";
 import classes from "./Sidebar.module.scss";
 import { RxCross2 } from "react-icons/rx";
 import { Link } from "react-router-dom";
+import AuthModal from "./AuthModal";
 
 const Sidebar = (closeSidebar) => {
   // State to manage whether the sidebar is open or not
@@ -38,7 +39,8 @@ const Sidebar = (closeSidebar) => {
           </li>
         </ul>
         <div className={classes.contact}>
-          <button>Get In Touch</button>
+          <AuthModal isSignin={true} />
+          <AuthModal isSignin={false} />
         </div>
       </div>
     </div>
