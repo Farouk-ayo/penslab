@@ -11,8 +11,10 @@ import {
   Button,
   Menu,
   MenuItem,
+  IconButton,
 } from "@mui/material";
 import { styled } from "@mui/system";
+import { IoMdArrowDropdown } from "react-icons/io";
 
 // StyledAvatar component to style the avatar image
 const StyledAvatar = styled(Avatar)({
@@ -69,15 +71,17 @@ const Header = () => {
         <CircularProgress size={24} />
       ) : user ? (
         <div className={classes.userProfile}>
-          <StyledAvatar
+          <Avatar
             alt="User Profile"
             src={`https://ui-avatars.com/api/?name=${encodeURIComponent(
               user.email
             )}&background=random`}
           />
-          <Button onClick={handleMenuOpen} variant="contained" color="primary">
-            Menu
-          </Button>
+          <IconButton onClick={handleMenuOpen} size="small" color="inherit">
+            {" "}
+            {/* Use IconButton for arrow icon */}
+            <IoMdArrowDropdown />
+          </IconButton>
           <Menu
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}

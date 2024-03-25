@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import Account from "./pages/Account/Account";
 import { checkAuthLoader } from "./auth/auth";
+import Welcome from "./pages/Welcome";
 
 function App() {
   const router = createBrowserRouter([
@@ -20,6 +21,7 @@ function App() {
         { path: "/blog", element: <Blog /> },
       ],
     },
+    { path: "/welcome", element: <Welcome /> },
     {
       path: "/account",
       element: <Account />,

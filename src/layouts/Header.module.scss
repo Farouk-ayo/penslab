@@ -67,3 +67,9 @@
     display: none;
   }
 }
+
+.userProfile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

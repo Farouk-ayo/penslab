@@ -1,7 +1,7 @@
 import Modal from "@mui/material/Modal";
 import { useState, useEffect } from "react";
 import AuthModalInputs from "./AuthModalInputs";
-import { Box } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import classes from "./AuthModal.module.scss";
 import useAuth from "../hooks/auth";
 import { toast } from "react-toastify";
@@ -23,6 +23,7 @@ export default function AuthModal({ isSignin }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [loading, setLoading] = useState(false);
   const [inputs, setInputs] = useState({
     firstName: "",
     lastName: "",
@@ -43,10 +44,15 @@ export default function AuthModal({ isSignin }) {
   console.log(inputs);
   const [disabled, setDisabled] = useState(true);
 
-  const handleClick = () => {
+  const handleClick = (e) => {
     console.log(inputs);
+    e.preventDefault();
     if (isSignin) {
-      signIn({ email: inputs.email, password: inputs.password });
+      signIn({
+        email: inputs.email,
+        password: inputs.password,
+        setLoading: setLoading,
+      });
     } else {
       if (inputs.password !== inputs.confirm_password) {
         toast.error("Passwords do not match");
@@ -57,6 +63,7 @@ export default function AuthModal({ isSignin }) {
       signUp({
         email: inputs.email,
         password: inputs.password,
+        setLoading: setLoading,
         options: {
           emailRedirectTo: "https://example.com/welcome",
         },
@@ -94,14 +101,15 @@ export default function AuthModal({ isSignin }) {
       >
         {renderContent("Log in", "Sign up")}
       </button>
-      <form action="">
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style}>
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <form action="" onSubmit={handleClick}>
             <div className="">
               <h1 className={classes.penslab}>
                 PENS<span>lab</span>
@@ -122,13 +130,22 @@ export default function AuthModal({ isSignin }) {
                 handleChangeInput={handleChangeInput}
                 isSignin={isSignin}
               />
-              <button disabled={disabled} onClick={handleClick}>
-                {renderContent("Log In", "Create Account")}
+              <button disabled={disabled}>
+                {loading ? (
+                  <>
+                    <CircularProgress size={24} sx={{ color: "white" }} />{" "}
+                    <span>
+                      {renderContent("Logging in...", "Signing up...")}
+                    </span>
+                  </>
+                ) : (
+                  renderContent("Log In", "Create Account")
+                )}
               </button>
             </div>
-          </Box>
-        </Modal>
-      </form>
+          </form>
+        </Box>
+      </Modal>
     </div>
   );
 }
