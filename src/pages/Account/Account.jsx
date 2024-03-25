@@ -6,9 +6,9 @@ const Account = () => {
       <h1>Account</h1>
       <iframe
         width="100%"
-        height="500"
+        height="1000"
         className={classes.trailer}
-        src={`http://192.168.223.95:81/stream`}
+        src={`http://192.168.223.95`}
       ></iframe>
     </div>
   );
