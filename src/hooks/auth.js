@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { sassNull } from "sass";
 
 const useAuth = () => {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ const useAuth = () => {
           emailRedirectTo: "https://penslab.vercel.app/welcome",
         },
       });
-      setUser(data.session);
+      setUser(null);
       if (error) {
         setLoading(false);
         throw error;

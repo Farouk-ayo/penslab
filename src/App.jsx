@@ -19,13 +19,13 @@ function App() {
         { path: "/about-us", element: <About /> },
         { path: "/projects", element: <Projects /> },
         { path: "/blog", element: <Blog /> },
-        { path: "/welcome", element: <Welcome /> },
-        {
-          path: "/account",
-          element: <Account />,
-          loader: checkAuthLoader,
-        },
       ],
+    },
+    { path: "/welcome", element: <Welcome /> },
+    {
+      path: "/account",
+      element: <Account />,
+      loader: checkAuthLoader,
     },
   ]);
   return <RouterProvider router={router} />;
