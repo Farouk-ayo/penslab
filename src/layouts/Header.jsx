@@ -5,17 +5,16 @@ import Sidebar from "../components/Sidebar";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import AuthModal from "../components/AuthModal";
+import { useAuthContext } from "../context/AuthContext";
 
 const Header = () => {
-  // State to manage whether the sidebar is open or not
+  const { user, signOut } = useAuthContext();
+  console.log(user);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Function to toggle the sidebar
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-
-  // Function to close the sidebar
   const closeSidebar = () => {
     setIsSidebarOpen(false);
   };
@@ -40,10 +39,25 @@ const Header = () => {
           <Link to="/about-us">About Us</Link>
         </li>
       </ul>
-      <div className={classes.contact}>
-        <AuthModal isSignin={true} />
-        <AuthModal isSignin={false} />
-      </div>
+      {user ? (
+        <div className={classes.userProfile}>
+          <img
+            src={`https://ui-avatars.com/api/?name=${encodeURIComponent(
+              user.email
+            )}&background=random`}
+            alt="User Profile"
+            className={classes.profileImage}
+          />
+          <div className={classes.dropdown}>
+            <button onClick={signOut}>Logout</button>
+          </div>
+        </div>
+      ) : (
+        <div className={classes.contact}>
+          <AuthModal isSignin={true} />
+          <AuthModal isSignin={false} />
+        </div>
+      )}
       <TiThMenu
         size={25}
         color="black"

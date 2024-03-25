@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import AuthModalInputs from "./AuthModalInputs";
 import { Box } from "@mui/material";
 import classes from "./AuthModal.module.scss";
+import useAuth from "../hooks/useAuth";
 
 const style = {
   position: "absolute",
@@ -17,9 +18,17 @@ const style = {
 };
 
 export default function AuthModal({ isSignin }) {
+  const { signIn, signUp } = useAuth();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [inputs, setInputs] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirm_password: "",
+  });
 
   const renderContent = (signinContent, signupContent) => {
     console.log(isSignin);
@@ -30,15 +39,23 @@ export default function AuthModal({ isSignin }) {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
-  const [inputs, setInputs] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    city: "",
-    password: "",
-  });
+  console.log(inputs);
   const [disabled, setDisabled] = useState(true);
+
+  const handleClick = () => {
+    console.log(inputs);
+    if (isSignin) {
+      signIn({ email: inputs.email, password: inputs.password });
+    } else {
+      signUp({
+        email: inputs.email,
+        password: inputs.password,
+        options: {
+          emailRedirectTo: "https://example.com/welcome",
+        },
+      });
+    }
+  };
 
   useEffect(() => {
     if (isSignin) {
@@ -50,9 +67,8 @@ export default function AuthModal({ isSignin }) {
         inputs.firstName &&
         inputs.lastName &&
         inputs.email &&
-        inputs.city &&
         inputs.password &&
-        inputs.phone
+        inputs.confirm_password
       ) {
         return setDisabled(false);
       }
@@ -98,7 +114,7 @@ export default function AuthModal({ isSignin }) {
               handleChangeInput={handleChangeInput}
               isSignin={isSignin}
             />
-            <button className="" disabled={disabled}>
+            <button disabled={disabled} onClick={handleClick}>
               {renderContent("Log In", "Create Account")}
             </button>
           </div>
