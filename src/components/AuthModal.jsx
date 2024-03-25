@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import AuthModalInputs from "./AuthModalInputs";
 import { Box } from "@mui/material";
 import classes from "./AuthModal.module.scss";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../hooks/auth";
+import { toast } from "react-toastify";
 
 const style = {
   position: "absolute",
@@ -47,6 +48,12 @@ export default function AuthModal({ isSignin }) {
     if (isSignin) {
       signIn({ email: inputs.email, password: inputs.password });
     } else {
+      if (inputs.password !== inputs.confirm_password) {
+        toast.error("Passwords do not match");
+        inputs.password = "";
+        inputs.confirm_password = "";
+        return;
+      }
       signUp({
         email: inputs.email,
         password: inputs.password,
@@ -87,39 +94,41 @@ export default function AuthModal({ isSignin }) {
       >
         {renderContent("Log in", "Sign up")}
       </button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <div className="">
-            <h1 className={classes.penslab}>
-              PENS<span>lab</span>
-            </h1>
-            <p className={classes.pens}>
-              {renderContent("Welcome Back", "Create an Account")}
-            </p>
-          </div>
-          <div className={classes.formData}>
-            <h2 className="">
-              {renderContent(
-                "Log  Into Your Account",
-                " Create Your Penslab Account"
-              )}
-            </h2>
-            <AuthModalInputs
-              inputs={inputs}
-              handleChangeInput={handleChangeInput}
-              isSignin={isSignin}
-            />
-            <button disabled={disabled} onClick={handleClick}>
-              {renderContent("Log In", "Create Account")}
-            </button>
-          </div>
-        </Box>
-      </Modal>
+      <form action="">
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <div className="">
+              <h1 className={classes.penslab}>
+                PENS<span>lab</span>
+              </h1>
+              <p className={classes.pens}>
+                {renderContent("Welcome Back", "Create an Account")}
+              </p>
+            </div>
+            <div className={classes.formData}>
+              <h2 className="">
+                {renderContent(
+                  "Log  Into Your Account",
+                  " Create Your Penslab Account"
+                )}
+              </h2>
+              <AuthModalInputs
+                inputs={inputs}
+                handleChangeInput={handleChangeInput}
+                isSignin={isSignin}
+              />
+              <button disabled={disabled} onClick={handleClick}>
+                {renderContent("Log In", "Create Account")}
+              </button>
+            </div>
+          </Box>
+        </Modal>
+      </form>
     </div>
   );
 }

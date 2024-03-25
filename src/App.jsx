@@ -6,6 +6,7 @@ import Projects from "./pages/Projects";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import Account from "./pages/Account/Account";
+import { checkAuthLoader } from "./auth/auth";
 
 function App() {
   const router = createBrowserRouter([
@@ -19,9 +20,12 @@ function App() {
         { path: "/blog", element: <Blog /> },
       ],
     },
-    { path: "/account", element: <Account /> },
+    {
+      path: "/account",
+      element: <Account />,
+      loader: checkAuthLoader,
+    },
   ]);
-
   return <RouterProvider router={router} />;
 }
 

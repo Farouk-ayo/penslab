@@ -1,22 +1,49 @@
 import classes from "./Header.module.scss";
 import { TiThMenu } from "react-icons/ti";
 import Sidebar from "../components/Sidebar";
-
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AuthModal from "../components/AuthModal";
-import { useAuthContext } from "../context/AuthContext";
+import useAuth from "../hooks/auth";
+import {
+  CircularProgress,
+  Avatar,
+  Button,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import { styled } from "@mui/system";
+
+// StyledAvatar component to style the avatar image
+const StyledAvatar = styled(Avatar)({
+  width: 32,
+  height: 32,
+  marginRight: 8,
+});
 
 const Header = () => {
-  const { user, signOut } = useAuthContext();
-  console.log(user);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const { user, signOut } = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
   const closeSidebar = () => {
     setIsSidebarOpen(false);
+  };
+
+  useEffect(() => {
+    setIsLoading(false); // Set loading state to false after initial render
+  }, []);
+
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -28,7 +55,6 @@ const Header = () => {
         <li>
           <Link to="/">Home</Link>
         </li>
-
         <li>
           <Link to="/projects">Projects</Link>
         </li>
@@ -39,18 +65,26 @@ const Header = () => {
           <Link to="/about-us">About Us</Link>
         </li>
       </ul>
-      {user ? (
+      {isLoading ? ( // Show loading spinner while fetching user info
+        <CircularProgress size={24} />
+      ) : user ? (
         <div className={classes.userProfile}>
-          <img
+          <StyledAvatar
+            alt="User Profile"
             src={`https://ui-avatars.com/api/?name=${encodeURIComponent(
               user.email
             )}&background=random`}
-            alt="User Profile"
-            className={classes.profileImage}
           />
-          <div className={classes.dropdown}>
-            <button onClick={signOut}>Logout</button>
-          </div>
+          <Button onClick={handleMenuOpen} variant="contained" color="primary">
+            Menu
+          </Button>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+          >
+            <MenuItem onClick={signOut}>Logout</MenuItem>
+          </Menu>
         </div>
       ) : (
         <div className={classes.contact}>

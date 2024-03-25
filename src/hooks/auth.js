@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { supabase } from "../lib/helpers/supabaseClient";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { cookies } from "../utils/cookies";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const useAuth = () => {
-  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+  const { user, setUser } = useContext(AuthContext);
 
   const signIn = async ({ email, password }) => {
     try {
@@ -13,15 +15,17 @@ const useAuth = () => {
         email,
         password,
       });
-      setUser(data.user);
-      cookies.setJson("supabase.auth.token", data.session.access_token);
-      console.log(data, error);
       if (error) {
         throw error;
-      }
+      } else {
+        toast.success("Signed in successfully!");
 
-      setUser(user);
-      toast.success("Signed in successfully!");
+        setUser(data.user);
+        localStorage.setItem("token", data.session.access_token);
+        localStorage.setItem("expiration", data.session.expires_at);
+
+        navigate("/account");
+      }
     } catch (error) {
       toast.error(error.message);
     }
@@ -57,6 +61,7 @@ const useAuth = () => {
   };
 
   return {
+    user,
     signIn,
     signUp,
     signOut,
