@@ -47,13 +47,13 @@ const useAuth = () => {
           emailRedirectTo: "https://penslab.vercel.app/welcome",
         },
       });
-      setUser(null);
+      setUser(data.session);
       if (error) {
         setLoading(false);
         throw error;
       }
       setLoading(false);
-      setUser(data);
+      setUser(data.session);
       toast.success("Sign up successful! Check your email for the login link.");
     } catch (error) {
       setLoading(false);
