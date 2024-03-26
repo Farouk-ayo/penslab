@@ -9,7 +9,7 @@ const Account = () => {
         width="100%"
         height="1500"
         className={classes.trailer}
-        src={`http://192.168.223.95:81/stream`}
+        src={`http://192.168.223.95`}
       ></iframe>
     </div>
   );
